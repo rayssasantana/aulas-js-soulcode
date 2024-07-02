@@ -1,5 +1,28 @@
 // 1. Crie uma função que recebe um array com os nomes dos alunos de uma turma, e outro array que recebe a lista de presença com os nomes. Retorne uma lista com quais alunos faltaram.
 
+// É preciso já ter os arrays em exercícios assim
+
+function listarAusentes(alunos, lista) {
+    let ausentes = [];
+
+    for(let nome of alunos) {
+        if(lista.includes(nome)) {
+            console.log(`O aluno ${nome} está presente.`);
+        } else {
+            console.log(`O aluno ${nome} está ausente.`);
+            ausentes.push(nome);
+        }
+    }
+
+    return ausentes;
+}
+
+let turma = ["Rayssa Santana", "Beatriz Faina", "Julia Domingues", "Raul Costa", "Gabriel Eleutério"];
+let presenca = ["Rayssa Santana", "Beatriz Faina", "Julia Domingues"];
+
+let faltas = listarAusentes(turma, presenca);
+console.log(faltas);
+
 // 2. Crie uma função que recebe um array de números e retorna um array com todos os valores elevados ao quadrado.
 
 function elevaAoQuadrado(listaNumeros) {
@@ -14,6 +37,23 @@ let list = elevaAoQuadrado([2, 4, 6, 5, 7, 8, 9]);
 console.log(list);
 
 // 3. Crie uma função que recebe um array de nomes de arquivos, e recebe também uma extensão, a função deve retornar apenas os nomes de arquivo que forem dessa extensão.
+
+function filtrarArquivos(arquivos, ext) {
+    let filtrados = [];
+
+    for(let nome of arquivos) {
+        if(nome.endsWith(ext)) {
+            filtrados.push(nome);
+        }
+    }
+
+    return filtrados;
+}
+
+let arquivosPasta = ["codigo.js", "estilos.css", "index.html", "sobre.html"];
+let extensao = ".html";
+let arquivosHtml = filtrarArquivos(arquivosPasta, extensao);
+console.log(`Arquivos da extensão ${extensao}: ${arquivosHtml}`);
 
 // 4. Crie um array contendo os números de 1 a 10 e exiba-os no console com for-of e for comum.
 
@@ -45,11 +85,11 @@ console.log(maiorCinco(["abacaxi", "limão", "abacate", "banana", "melancia", "m
 
 // 6. Crie um array com 7 números. Percorra e indique qual o maior número deles.
 
-let lista = [139, 34, 65, 23, 2.5, 99, 80];
-let maior = lista[0];
-for(let i = 1; i < lista.length; i++) {
-    if(lista[i] > maior) {
-        maior = lista[i];
+let lista = [1, 34, 65, 23, 2.5, 99, 80];
+let maior = lista[0]; // suponho que o primeiro é o maior
+for(let i = 1; i < lista.length; i++) { // comparo a partir do segundo (let i = 1)
+    if(lista[i] > maior) { // o número do indice 1 é maior que o 0? Sim!
+        maior = lista[i]; // então troca
     }
 }
 
@@ -59,7 +99,7 @@ console.log(maior);
 // 7. Crie uma função que extrai os dígitos verificadores de um cpf. Ex: "056.985.990-23" -> "23". Retorne apenas os dois últimos dígitos.
 function extraiVerificadores(cpf) {
     let cpfArray = cpf.split("-");  
-    return cpfArray[cpfArray.length -1];
+    return cpfArray[1];
 }
 
 let digitos = extraiVerificadores("546.948.957-20");
@@ -80,6 +120,14 @@ console.log(dig);
 function invertePalavra(palavra) {
     let palavraInvertida = palavra.split("").reverse().join("");
     return palavraInvertida;
+}
+
+console.log(invertePalavra("arroz"));
+
+//
+
+function invertePalavra(palavra) {
+    return palavra.split("").reverse().join("");
 }
 
 console.log(invertePalavra("arroz"));
@@ -111,8 +159,30 @@ function formataData(listData, separador) {
     let = [dia, mes, ano] = listData;
     return `${dia}${separador}${mes}${separador}${ano}`;
 }
-let data = [27,6,2024];
+let data = ["27","06","2024"];
 let separador = "/";
 console.log(formataData(data, separador));
 
+//
+
+let dataArray = ["27","06","2024"]
+
+function formatarData(arr, sep) {
+    return arr.join(sep);
+}
+
+console.log(formatarData(dataArray, "/"));
+
 // 12. Crie uma função que recebe um array, um valor de busca e um valor padrão. Caso o elemento exista no array retorne o elemento, caso contrário retorne o valor padrão definido via parâmetro. Ex: busca(array, 'batata', 'não tem batata') -> 'não tem batata'
+
+function busca(array, elemento, valorPadrao) {
+    if(array.includes(elemento)) {
+        return elemento;
+    } else { // não precisaria ter o else, porque se passar do if ele retorna, parando a execução (else implícito)
+        return valorPadrao;
+    }
+}
+
+let array = ["alface", "pimenta", "maionese", "ovo"];
+console.log(busca(array, "batata", "Não tem batata :("));
+console.log(busca(array, "pimenta", "Não tem pimenta :("));
