@@ -26,9 +26,9 @@ console.log(multiplicaNumeros);
 
 
 // 4. Dado um array de idades, use filter para retornar apenas as idades maiores ou iguais a 18.
-const idades = [14, 21, 34, 7, 20, 10];
+const idades = [14, 21, 34, 7, 20, 18];
 
-const idadesMaior18 = idades.filter((idade) => idade > 18);
+const idadesMaior18 = idades.filter((idade) => idade >= 18);
 console.log(idadesMaior18);
 
 // 5. Dado um objeto representando um livro, que contém título, autor, e um objeto aninhado com informações de publicação (editora, ano), acesse o nome da editora.
